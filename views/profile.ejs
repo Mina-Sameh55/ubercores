@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3><%=lan.edit%> <%=lan.profile%></h3>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><%=lan.dashboard%></li>
+                    <li class="breadcrumb-item active"><%=lan.edit%> <%=lan.profile%></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-body">
+                    <form  class="needs-validation" id="edit_admin_form" novalidate="" action="/edit_admin/<%=admin.id%>" method="post">
+                      <div class="row">
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                          <label class="col-form-label"><%=lan.name%></label>
+                          <input class="form-control cdcheck" type="text" name="name" value="<%=admin.name%>" placeholder="<%=lan.enter_name%>" required>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                          <label class="col-form-label"><%=lan.email%></label>
+                          <input class="form-control cdcheck" id="admin_email" type="email" name="email" value="<%=admin.email%>" placeholder="<%=lan.enter_email%>" required>
+                          <input type="hidden" id="adminemail" value="<%=admin.email%>">
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                            <label class="col-form-label"><%=lan.country_code%></label>
+                            <select class="js-example-basic-single cdcheck" id="country_code" name="country_code" required>
+                                <option value selected disabled><%=lan.country_list%></option>
+                                <% CountryCode.forEach((data, x) => { %>
+                                    <option value="<%= data %>" <%= admin.country_code == data ? 'selected' : "" %>> <%= nameCode[x] %> <%= data %> </option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="coccode" value="<%=admin.country_code%>">
+                        <input type="hidden" id="cophone" value="<%=admin.phone%>">
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                            <label class="col-form-label"><%=lan.number%></label>
+                            <input class="form-control cdcheck" type="number" step="any" id="ephone" name="phone" value="<%=admin.phone%>" placeholder="<%=lan.enter_number%>" required>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                          <label class="col-form-label"><%=lan.password%></label>
+                          <input class="form-control" type="password" name="password" placeholder="<%=lan.password_placeholder%>">
+                        </div>
+                        
+                        <div class="text-center">
+                          <p class="text-danger d-none mt-3" id="admin_detail_error"><%=lan.please_enter_all_detail%>.</p>
+                          <p class="text-danger d-none mt-3" id="admin_phoneno_error"><%=lan.this_phone_no_already_registered%>.</p>
+                        </div>
+                        </div>
+                      </form>
+                    <div class="text-end mt-5">
+                      <button class="btn btn-square btn-primary btn-air-primary add_detail_btn b-r-10" id="edit_admin" type="submit"><%=lan.submit%></button> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+
+        <%- include('./partials/footer'); -%>
+        <%- include('./partials/script'); -%>
+  </body>
+</html>

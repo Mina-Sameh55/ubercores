@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/frontend_head'); -%>
+    
+</head>
+<body onload="offdarkmode()">
+  <!-- Loader starts-->
+  <div class="loader-wrapper">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"> </div>
+    <div class="dot"></div>
+  </div>
+  <!-- Loader ends-->
+  <!-- login page start-->
+  <div class="container-fluid p-0" style="height: 100vh;">
+    <div class="login-card" style="padding-top: 50px;">
+      <div class="login-main" style="width: 650px;"> 
+        <form class="theme-form" action="" method="post">
+          <div class="form-group">
+            <label class="col-form-label">License</label>
+            <input class="form-control" type="text" name="phone" placeholder="Enter License." required>
+          </div>
+          <div class="form-group mb-0">
+            <div class="text-end mt-4">
+              <button class="btn btn-primary btn-block w-100" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/script'); -%>
+
+
+</body>
+</html>

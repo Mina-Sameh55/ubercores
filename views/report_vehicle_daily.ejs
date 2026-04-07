@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3><%= lan.vehicle %> <%= lan.daily %> <%= lan.report %></h3>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><%= lan.dashboard %></li>
+                    <li class="breadcrumb-item active"><%= lan.vehicle %> <%= lan.daily %> <%= lan.report %></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row col-12">
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-form-label"><%= lan.select %> <%= lan.date %></label>
+                                    <input class="form-control" id="report_d_date" value="<%= today %>" type="date">
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-form-label"><%= lan.driver %> <%= lan.list %></label>
+                                    <select class="js-example-basic-single" id="report_d_driver">
+                                        <option value selected disabled><%= lan.select_driver %></option>
+                                        <% driver.forEach((data) => { %>
+                                            <option value="<%= data.id %>"><%= data.first_name %> <%= data.last_name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-form-label"><%= lan.ride %> <%= lan.type %></label>
+                                    <select class="js-example-basic-single" id="report_d_ridet" name="zone">
+                                        <option value="0" selected><%= lan.all_rides %></option>
+                                        <option value="1"><%= lan.vehicle %></option>
+                                        <% moduled.forEach((data, i) => { %>
+                                            <option value="<%= i+2 %>"><%= data.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row col-12 ">
+                                <div class="table-responsive theme-scrollbar">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th class="d-none"></th>
+                                                <th><%= lan.services %></th>
+                                                <th><%= lan.value %></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.total %></td>
+                                                <td id="dtotal"><%= daily_list[0].total %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.accepted %></td>
+                                                <td id="daccept"><%= daily_list[1].accept %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.reached_pickup %></td>
+                                                <td id="diamhere"><%= daily_list[2].iamhere %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.otp_entered %></td>
+                                                <td id="denterotp"><%= daily_list[3].enterotp %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.cancel %></td>
+                                                <td id="dcancel"><%= daily_list[4].cancel %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.start_ride %></td>
+                                                <td id="dstart"><%= daily_list[5].start %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.end_ride %></td>
+                                                <td id="dend"><%= daily_list[6].end %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.pending_payment %></td>
+                                                <td id="dridecomplete"><%= daily_list[7].ridecomplete %></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="d-none"></td>
+                                                <td><%= lan.complete %></td>
+                                                <td id="dcomplete"><%= daily_list[8].complete %></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+
+    <%- include('./partials/footer'); -%>
+    <%- include('./partials/script'); -%>
+  </body>
+</html>

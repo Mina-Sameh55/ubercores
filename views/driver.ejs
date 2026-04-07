@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3><%=lan.driver %> <%=lan.list %></h3>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><%=lan.dashboard %></li>
+                    <li class="breadcrumb-item active"><%=lan.driver %> <%=lan.list %></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <% let permiss = per != "1" ? per.driver[1] : "1" %>
+                        <% if(permiss == "1"){ %>
+                        <div class="card-header d-flex justify-content-end pb-0">
+                            <a class="btn btn-square btn-primary b-r-10" type="button" href="/driver/add"><%=lan.add %> <%=lan.driver %></a>
+                        </div>
+                        <% } %>
+                        <div class="card-body">
+                            <div class="table-responsive theme-scrollbar">
+                                <table class="display" id="basic-1">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th><%=lan.name %></th>
+                                            <th><%=lan.email %></th>
+                                            <th><%=lan.phone_number %></th>
+                                            <th><%=lan.vehicle_name %></th>
+                                            <th><%=lan.approved %></th>
+                                            <th><%=lan.status %></th>
+                                            <% let permissions = per != "1" ? per.driver[2] : "1" %>
+                                            <% if(permissions == "1"){ %>
+                                            <th><%=lan.action %></th>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% var i = 1 %>
+                                        <% driver_list.forEach((data) => { %>
+                                            <tr>
+                                                <td><%= i %></td>
+                                                <td><%= data.first_name %> <%= data.last_name %></td>
+                                                <td><%= data.email %></td>
+                                                <td><%= data.primary_ccode %> <%= data.primary_phoneNo %></td>
+                                                <td><%= data.vname %></td>
+                                                <td>
+                                                    <% if (data.approval_status == '1') { %>
+                                                        <span class="badge badge-success"><%=lan.approved %></span>
+                                                    <% } else { %>
+                                                        <span class="badge badge-danger"><%=lan.pending %></span>
+                                                    <% } %>
+                                                </td>
+                                                <td>
+                                                    <% if (data.status == '1') { %>
+                                                        <span class="badge badge-success"><%=lan.active %></span>
+                                                    <% } else { %>
+                                                        <span class="badge badge-danger"><%=lan.deactive %></span>
+                                                    <% } %>
+                                                </td>
+                                                <% if(permissions == "1"){ %>
+                                                <td> 
+                                                    <ul class="action">
+                                                        <li class="text-primary"><a href="/driver/profile/<%= data.id %>"><i class="icon-user f-14"></i></a></li>
+                                                        <li class="text-primary" style="margin-left: 8px;"><a href="/driver/document/<%= data.id %>"><i class="icon-id-badge f-18"></i></a></li>
+                                                        <li class="text-primary" style="margin-left: 6px;" id="ondscbtn" data-id="<%= data.id %>"><i class="icon-settings"></i></li>
+                                                        <li class="edit" style="margin-left: 6px;"><a href="/driver/edit/<%= data.id %>"><i class="icon-pencil-alt"></i></a></li>
+                                                        <li class="delete"><a href="/driver/delete/<%= data.id %>"><i class="icon-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                                <% } %>
+                                            </tr>
+                                        <% i++ %>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+
+        <div class="modal fade bd-example-modal-lg" id="update_dmsd" tabindex="-1" role="dialog" aria-labelledby="update_dmsd" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><%=lan.module %> <%=lan.setting %></h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="<%=lan.close %>"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4" id="dmsfird">
+                                <label class="form-label" id="dmctitfir"></label>
+                                <select class="js-example-basic-single col-sm-12 dmcstafir">
+                                    <option value="1"><%=lan.active %></option>
+                                    <option value="0"><%=lan.deactive %></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5 col-md-3 col-lg-3 col-xl-4" id="dmssecd">
+                                <label class="form-label" id="dmctitsec"></label>
+                                <select class="js-example-basic-single col-sm-12 dmcstasec">
+                                    <option value="1"><%=lan.active %></option>
+                                    <option value="0"><%=lan.deactive %></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5 col-md-3 col-lg-3 col-xl-4" id="dmsthird">
+                                <label class="form-label" id="dmctitthir"></label>
+                                <select class="js-example-basic-single col-sm-12 dmcstathir">
+                                    <option value="1"><%=lan.active %></option>
+                                    <option value="0"><%=lan.deactive %></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><%=lan.close %></button>
+                        <button class="btn btn-primary" type="submit" id="dmsbtnid" data-id=""><%=lan.update %></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <%- include('./partials/footer'); -%>
+    <%- include('./partials/script'); -%>
+  </body>
+</html>

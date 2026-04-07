@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+    <style>
+        .hand-hover {
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+    <!-- Page Sidebar Ends-->
+    <div class="page-body">
+      <div class="container-fluid">
+        <div class="page-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3><%=lan.cash%> <%=lan.management%></h3>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                <li class="breadcrumb-item"><%=lan.dashboard%></li>
+                <li class="breadcrumb-item active"><%=lan.cash%> <%=lan.management%></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Container-fluid starts-->
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><%=lan.driver%> <%=lan.name%></th>
+                                        <th><%=lan.payment%> <%=lan.image%></th>
+                                        <th><%=lan.amount%></th>
+                                        <th><%=lan.payment%> <%=lan.method%></th>
+                                        <th><%=lan.date%></th>
+                                        <th><%=lan.status%></th>
+                                        <th><%=lan.action%></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var i = 1 %>
+                                    <% cash_list.forEach((data) => { %>
+                                        <tr class="acashmtr">
+                                            <td><%= i %></td>
+                                            <td><%= data.first_name %> <%= data.last_name %></td>
+                                            <td class="p-1">
+                                                <a href="../../<%= data.prof_image %>" target="_blank"><img class="p-0" width="50px" height="50px" src="../../<%= data.prof_image %>" alt="<%=lan.image%>" onerror="this.src='../../images/dashboard/default/profile.png'"></a>
+                                            </td>
+                                            <td class="invosymbol"><%= data.amount %></td>
+                                            <td><%= data.payment_type %></td>
+                                            <td><%= data.date %></td>
+                                            <td class="acasstatus">
+                                                <% if (data.status == '0') { %>
+                                                    <span class="badge badge-secondary"><%=lan.pending%></span>
+                                                <% } else if (data.status == '1') { %>
+                                                    <span class="badge badge-success"><%=lan.approve%></span>
+                                                <% } else if (data.status == '2') { %>
+                                                    <span class="badge badge-danger"><%=lan.reject%></span>
+                                                <% } else { %>
+                                                    -
+                                                <% }; %>
+                                            </td>
+                                            <td class="acasmain">
+                                                <% if (data.status == '0') { %>
+                                                    <span class="badge badge-success hand-hover" id="alcasappro" data-id="<%= data.id %>"><%=lan.approve%></span>
+                                                    <span class="badge badge-danger hand-hover" id="alcasateject" data-id="<%= data.id %>"><%=lan.reject%></span>
+                                                <% } else { %>
+                                                    -
+                                                <% }; %>
+                                            </td>
+                                        </tr>
+                                    <% i++ %>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- Container-fluid Ends-->
+    </div>
+
+    <div class="modal fade" id="edit_cash" tabindex="-1" role="dialog" aria-labelledby="edit_cash" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><%=lan.edit%> <%=lan.cash%> <%=lan.amount%></h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="<%=lan.close%>"></button>
+                </div>
+                <form class="needs-validation" id="edit_cash_form" novalidate="" action="" method="post">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label"><%=lan.cash%> <%=lan.amount%></label>
+                                <input class="form-control" id="cash_amount_input" name="cash_amount" type="number" step="any" value="<%=lan.cash%> <%=lan.amount%>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><%=lan.close%></button>
+                        <button class="btn btn-primary" type="submit"><%=lan.update%></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit_cash_status_module" tabindex="-1" role="dialog" aria-labelledby="edit_cash_status_module" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><%=lan.edit%> <%=lan.cash%> <%=lan.status%></h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="<%=lan.close%>"></button>
+                </div>
+                <form class="needs-validation" id="cash_edit_status_form" novalidate="" action="" method="post">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12 text-center">
+                                <a id="edit_cash_imga" href="" target="_blank"><img class="p-0" id="edit_cash_img" width="100px" height="100px" src="" alt="<%=lan.image%>"></a>
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <h5><%=lan.payment%> <%=lan.method%> :- <span class="f-w-400 cash_pm"></span></h5>
+                            </div>
+
+                            <div class="col-12 mt-1">
+                                <h5><%=lan.date%> :- <span class="f-w-400 cash_date"></span></h5>
+                            </div>
+
+                            <div class="col-12 mt-1">
+                                <h5><%=lan.amount%> :- <span class="f-w-400 cash_amount"></span></h5>
+                            </div>
+
+                            <div class="col-12 mt-1 d-flex">
+                                <label class="col-form-label m-r-10"><%=lan.status%></label>
+                                <div class="icon-state switch-outline">
+                                    <label class="switch">
+                                        <input type="checkbox" id="cash_status" name="cash_status"><span class="switch-state bg-success"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><%=lan.close%></button>
+                        <button class="btn btn-primary" type="submit"><%=lan.save%></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%- include('./partials/footer'); -%>
+<%- include('./partials/script'); -%>
+</body>
+</html>

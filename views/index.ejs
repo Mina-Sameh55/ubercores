@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <!-- Page Sidebar Ends-->
+          <div class="page-body">
+            <div class="container-fluid">
+              <div class="page-title pb-2">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h3><%= lan.dashboard %></h3>
+                  </div>
+                  <div class="col-sm-6 breadcrumb">
+                    <a href="/zone/live_driver" class="btn btn-square btn-primary b-r-10 m-r-15" type="button" >
+                      <%= lan.driver %> <%= lan.live %> <%= lan.location %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Container-fluid starts-->
+            <div class="container-fluid dashboard-2">
+              <div class="row">
+                <div class="col-12">
+                  <div class="profile-greeting"> 
+                    <div class="p-0">
+                      <h5 class="px-4 py-3 "><%= lan.general %></h5>
+                    </div>              
+                    <div class="row pt-0">
+                    
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card profit-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-primary "><%= lan.total %> <%= lan.ride %><i class="fa fa-circle"> </i></p>
+                                <h4><%= allstatus[0].total %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-primary"><i class="fa fa-car"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card visitor-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-info"><%= lan.total %> <%= lan.service %> <%= lan.zone %><i class="fa fa-circle"> </i></p>
+                                <h4><%= tot_zone[0].total_zone %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-info"><i class="fa fa-map"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-success"><%= lan.total %> <%= lan.vehicle %><i class="fa fa-circle"> </i></p>
+                                <h4><%= tot_vehicle[0].total_vehicle %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-success"><i class="fa fa-bars"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-secondary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-warning"><%= lan.total %> <%= lan.payment %> <%= lan.method %><i class="fa fa-circle"> </i></p>
+                                <h4><%= tot_payment[0].total_payment %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-warning"><i class="fa fa-list"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-warning"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-12">
+                  <div class="profile-greeting"> 
+                    <div class="p-0">
+                      <h5 class="px-4 py-3 "><%= lan.driver %></h5>
+                    </div>              
+                    <div class="row pt-0">
+                    
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card profit-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-primary "><%= lan.total %> <%= lan.driver %><i class="fa fa-circle"> </i></p>
+                                <h4><%= driver[0].total_driver %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-primary"><i class="fa fa-user"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card visitor-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-info"><%= lan.active %> <%= lan.driver %><i class="fa fa-circle"> </i></p>
+                                <h4><%= driver[0].appro %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-info"><i class="fa fa-user-circle-o"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-success"><%= lan.verified %> <%= lan.driver %><i class="fa fa-circle"> </i></p>
+                                <h4><%= driver[0].verifi %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-success"><i class="fa fa-user-plus"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-secondary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-warning"><%= lan.deactivate %> <%= lan.driver %><i class="fa fa-circle"> </i></p>
+                                <h4><%= driver[0].unappro %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-warning"><i class="fa fa-user-times"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-warning"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-12">
+                  <div class="profile-greeting"> 
+                    <div class="p-0">
+                      <h5 class="px-4 py-3 "><%= lan.customer %></h5>
+                    </div>              
+                    <div class="row pt-0">
+                    
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card profit-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-primary "><%= lan.total %> <%= lan.customer %><i class="fa fa-circle"> </i></p>
+                                <h4><%= customer[0].total_customer %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-primary"><i class="fa fa-users"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-3 col-md-6 box-col-4">
+                        <div class="card visitor-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-info"><%= lan.active %> <%= lan.customer %><i class="fa fa-circle"> </i></p>
+                                <h4><%= customer[0].appro %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-info"><i class="fa fa-user-circle-o"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-success"><%= lan.deactivate %> <%= lan.customer %><i class="fa fa-circle"> </i></p>
+                                <h4><%= customer[0].unappro %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-success"><i class="fa fa-user-times"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-secondary"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-3 col-md-12 box-col-4">
+                        <div class="card sell-card">
+                          <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                              <div class="flex-grow-1">
+                                <p class="square-after f-w-600 header-text-warning"><%= lan.unverified %> <%= lan.driver %><i class="fa fa-circle"> </i></p>
+                                <h4><%= driver[0].unverifi %></h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="right-side icon-right-warning"><i class="fa fa-times-circle"></i>
+                              <div class="shap-block">
+                                <div class="rounded-shap animate-bg-warning"><i></i><i></i></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              
+                        
+                        
+                        
+                       <div class="col-12">
+            <div class=" profile-greeting"> 
+              <div class="p-0">
+                <h5 class="px-4 py-3 "><%=lan.book%> <%=lan.services%> <%=lan.status%></h5>
+              </div>              
+              <div class="row pt-0">
+              
+                <div class="col-lg-3 col-md-6 box-col-4">
+                  <div class="card profit-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-primary "><%=lan.total%> <%=lan.accepted%> <%=lan.ride%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[1].accept%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-primary"><i class="fa fa-taxi"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 box-col-4">
+                  <div class="card visitor-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-info"><%=lan.total%> <%=lan.reached%> <%=lan.pickup%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[2].iamhere%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-info"><i class="fa fa-hourglass-start"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-lg-3 col-md-12 box-col-4">
+                  <div class="card sell-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-success"><%=lan.total%> <%=lan.confirm%> <%=lan.pickup%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[3].enterotp%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-success"><i class="fa fa-check-circle"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-secondary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-lg-3 col-md-12 box-col-4">
+                  <div class="card sell-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-warning"><%=lan.total%> <%=lan.cancel%> <%=lan.ride%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[4].cancel%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-warning"><i class="fa fa-times-circle-o"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-warning"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class=" profile-greeting"> 
+              <div class="p-0">
+                <h5 class="px-4 py-3 "><%=lan.book%> <%=lan.services%> <%=lan.status%></h5>
+              </div>              
+              <div class="row pt-0">
+              
+                <div class="col-lg-3 col-md-6 box-col-4">
+                  <div class="card profit-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-primary "><%=lan.total%> <%=lan.completed%> <%=lan.ride%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[8].complete%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-primary"><i class="fa fa-list-alt"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 box-col-4">
+                  <div class="card visitor-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-info"><%=lan.total%> <%=lan.start%> <%=lan.ride%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[5].start%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-info"><i class="fa fa-step-backward"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-primary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-lg-3 col-md-12 box-col-4">
+                  <div class="card sell-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-success"><%=lan.total%> <%=lan.end%> <%=lan.ride%><i class="fa fa-circle"> </i></p>
+                          <h4><%= allstatus[6].end%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-success"><i class="fa fa-step-forward"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-secondary"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-lg-3 col-md-12 box-col-4">
+                  <div class="card sell-card">
+                    <div class="card-header pb-0">
+                      <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1">
+                          <p class="square-after f-w-600 header-text-warning"><%=lan.total%> <%=lan.ride%> <%=lan.complete%><i class="fa fa-circle"></i></p>
+                          <h4><%= allstatus[7].ridecomplete%></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="right-side icon-right-warning"><i class="fa fa-check-circle"></i>
+                        <div class="shap-block">
+                          <div class="rounded-shap animate-bg-warning"><i></i><i></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+
+
+        <%- include('./partials/footer'); -%>
+        <%- include('./partials/script'); -%>
+  </body>
+</html>

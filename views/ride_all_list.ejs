@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3><%= lan.all %> <%= lan.rides %> <%= lan.list %></h3>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><%= lan.dashboard %></li>
+                    <li class="breadcrumb-item active"><%= lan.all %> <%= lan.rides %> <%= lan.list %></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive theme-scrollbar">
+                                <table class="display" id="basic-1">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th><%= lan.rider %></th>
+                                            <th><%= lan.driver %></th>
+                                            <th><%= lan.pickup %> <%= lan.location %></th>
+                                            <th><%= lan.destination %></th>
+                                            <th><%= lan.ride %> <%= lan.fare %></th>
+                                            <th><%= lan.module %> <%= lan.type %></th>
+                                            <th><%= lan.status %></th>
+                                            <th><%= lan.action %></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% var i = 1 %>
+                                        <% rd.forEach((data) => { %>
+                                            <tr>
+                                                <td><%= i %></td>
+                                                <td><%= data.cname %></td>
+                                                <td><%= data.dfname %> <%= data.dlname %></td>
+                                                <td>
+                                                    <%= data.pic_address.length < 40 ? data.pic_address : data.pic_address.slice(0, 40) + '...' %>
+                                                </td>
+                                                <td>
+                                                    <%= data.drop_address.length < 40 ? data.drop_address : data.drop_address.slice(0, 40) + '...' %>
+                                                </td>
+                                                <td class="invosymbol"><%= data.price %></td>
+                                                <td><%= data.mode_title%></td>
+                                                <td>
+                                                    <% if (data.status == '0') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.new_ride %></span>
+                                                    <% } else if (data.status == '1') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.accept_ride %></span>
+                                                    <% } else if (data.status == '2') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.arrived_at_the_location %></span>
+                                                    <% } else if (data.status == '3') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.confirm_ride %></span>
+                                                    <% } else if (data.status == '4') { %>
+                                                        <span class="badge badge-danger p-2"><%= lan.ride_cancel %></span>
+                                                    <% } else if (data.status == '5') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.ride_start %></span>
+                                                    <% } else if (data.status == '6') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.ride_end %></span>
+                                                    <% } else if (data.status == '7') { %>
+                                                        <span class="badge badge-warning p-2"><%= lan.waiting_payment %></span>
+                                                    <% } else if (data.status == '8') { %>
+                                                        <span class="badge badge-success p-2"><%= lan.complete %></span>
+                                                    <% }; %>
+                                                </td>
+                                                <td>
+                                                    <a class="dropbtn btn-primary px-3 py-1 b-r-5 f-14 f-w-400" href="/rides/alldetail?u=<%= data.req_id %>&c=<%= data.c_id %>&s=<%= data.rides %>"><%= lan.details %></a>
+                                                </td>
+                                            </tr>
+                                        <% i++ %>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+
+    <%- include('./partials/footer'); -%>
+    <%- include('./partials/script'); -%>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/head'); -%>
+    
+</head>
+<body onload="startTime()">
+    <%- include('./partials/header_sidebar'); -%>
+    
+    <!-- tap on top starts-->
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3><%=lan.ride%> <%=lan.payment%> <%=lan.report%></h3>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/index"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><%=lan.dashboard%></li>
+                    <li class="breadcrumb-item active"><%=lan.ride%> <%=lan.payment%> <%=lan.report%></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header col-12 pb-0">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-label"><%=lan.start%> <%=lan.date%></label>
+                                    <input class="form-control" id="payreports" type="date" value="">
+                                </div>
+                                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-label"><%=lan.end%> <%=lan.date%></label>
+                                    <input class="form-control" id="payreporte" type="date" value="">
+                                </div>
+                                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 form-group">
+                                    <label class="col-label"><%=lan.ride%> <%=lan.type%></label>
+                                    <select class="js-example-basic-single" id="preporridet" name="zone">
+                                        <option value="0" selected><%= lan.all_ride %></option>
+                                        <option value="1"><%= lan.vehicle %></option>
+                                        <% moduled.forEach((data, i) => { %>
+                                            <option value="<%= i+2 %>"><%= data.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive theme-scrollbar">
+                                <table class="display" id="basic-1">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th><%=lan.rider%></th>
+                                            <th><%=lan.driver%></th>
+                                            <th><%=lan.ride%></th>
+                                            <th><%=lan.payment%> <%=lan.type%></th>
+                                            <th><%=lan.amount%></th>
+                                            <th><%=lan.date%></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ride_payment_report">
+                                        <% let i = 1 %>
+                                        <% rd.forEach((data) => { %>
+                                            <tr>
+                                                <td><%= i %></td>
+                                                <td><%= data.cname %></td>
+                                                <td><%= data.dfname %> <%= data.dlname %></td>
+                                                <td><a href="/rides/codetail/<%= data.id %>">#<%= data.id %></a></td>
+                                                <td>
+                                                    <% if (data.pay_name != "") { %>
+                                                        <%= data.pay_name %>
+                                                    <% } else { %>
+                                                       0 <%=lan.wallet%>
+                                                    <% } %>
+                                                </td>
+                                                <td class="invosymbol"><%= data.price %></td>
+                                                <td><%= data.start_time %></td>
+                                            </tr>
+                                        <% i++ %>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12 text-end form-group">
+                                <button class="btn btn-square btn-primary b-r-10" id="down_pay_report" style="margin-top: 30px;" type="button"><%=lan.download%> <%=lan.report%></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+
+    <%- include('./partials/footer'); -%>
+    <%- include('./partials/script'); -%>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+tbl_transaction_customer
+
+status 1 wallet add
+status 2 vehicle payment add // type :- order id
+status 3 Amount Withdraw
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+vehicle customer status
+0 :- Finding Ride for you
+1 :- request accept                 //     Captain arriving in TIME       -    Your Captain is on the way
+2 :- Driver Pick your location      //     The captain waiting for you    -    At you're location
+3 :- Pick Up Customer ( I am here )
+4 :- Ride cancel
+5 :- Ride start                     //     Heading to the destination
+6 :- Ride complete                  //     Heading to the destination
+
+check multiple Drop and complete
+
+7 :- All Ride complete
+8 :- Ride complete

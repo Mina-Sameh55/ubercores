@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <%- include('./partials/frontend_head'); -%>
+    
+</head>
+<body onload="offdarkmode()">
+  <!-- Loader starts-->
+  <div class="loader-wrapper">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"> </div>
+    <div class="dot"></div>
+  </div>
+  <!-- Loader ends-->
+  <!-- login page start-->
+  <div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12">    
+        <div class="login-card">
+           <iv class="login-main" style="width: 650px;"> 
+            <form class="theme-form" action="/login" method="post">
+              <h4 class="text-center">Sign in to account</h4>
+              <p class="text-center">Enter your Mobile No & password to login</p>
+              <div class="form-group">
+                <label class="col-form-label">Email</label>
+                <div class="form-input position-relative">
+                  <input class="form-control" type="email" name="email"  placeholder="Enter Email Id" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Password</label>
+                <div class="form-input position-relative">
+                  <input class="form-control" type="password" name="password"  placeholder="*********" required>
+                  <div class="show-hide"><span class="show"></span></div>
+                </div>
+              </div>
+
+                <div class="form-group mb-0">
+                  <div class="text-end mt-4">
+                    <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
+                  </div>
+                </div>
+                
+
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/script'); -%>
+
+
+</body>
+</html>
